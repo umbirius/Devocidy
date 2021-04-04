@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MainForm = () => {
 
-// setting variable for form data and function to update MainForm object
+// setting variable for form data and function to update MainForm object (will need to revisit password storing, currently unsafe)
   const [userData, setUserData] = useState({
     user: "",
     password: "",
