@@ -28,6 +28,7 @@ const NavBar = () => {
         <Tabs className={classes.tabs}>
           <LogoLink />
           <NavTab name={'Groups'} pathname={'/groups'} bool={false} />
+          <NavTab name={'Log In/Sign Up'} pathname={'/login'} bool={false} />
         </Tabs>
       </AppBar>
       <div className={classes.div} />
