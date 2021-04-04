@@ -26,8 +26,9 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     width: "300px",
+    margin: "auto"
   },
-  buttonSubmit: {
+  button: {
     marginBottom: 10,
     width: "200px",
     padding: "10px",
@@ -62,6 +63,7 @@ const MainForm = () => {
         ></TextField>
         <br></br>
         <TextField
+          name="password"
           label="Password"
           type="password"
           autoComplete="current-password"
@@ -72,13 +74,22 @@ const MainForm = () => {
           }
         ></TextField>
         <Button
-          className={classes.buttonSubmit}
+          className={classes.button}
           variant="contained"
           size="medium"
           color="primary"
           type="submit"
         >
           Log In
+        </Button>
+        <Typography variant="h6">------ Or ------</Typography>
+        <Button
+          className={classes.button}
+          variant="contained"
+          size="medium"
+          color="primary"
+        >
+          Sign Up
         </Button>
       </form>
     </Paper>
