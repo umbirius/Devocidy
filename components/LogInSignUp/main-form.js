@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     width: "400px",
     padding: "20px",
-    alignItems: "center"
+    alignItems: "center",
   },
   textField: {
     width: "300px",
@@ -35,22 +35,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const handleSubmit = (e) => {
+  e.preventDefault();
 
+  console.log(e);
+  console.log("Submit");
+};
 
 const MainForm = () => {
   const classes = useStyles();
   return (
-      <Paper className={`${classes.root} ${classes.form}`}>
-        <form>
-          <TextField label="Username" variant="outlined"></TextField>
-          <br></br>
-          <TextField
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            variant="outlined"
-          ></TextField>
-        </form>
+    <Paper className={`${classes.root} ${classes.form}`}>
+      <form onSubmit={handleSubmit}>
+        <TextField label="Username" variant="outlined"></TextField>
+        <br></br>
+        <TextField
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          variant="outlined"
+        ></TextField>
         <Button
           className={classes.buttonSubmit}
           variant="contained"
@@ -59,7 +63,8 @@ const MainForm = () => {
         >
           Log In
         </Button>
-      </Paper>
+      </form>
+    </Paper>
   );
 };
 
