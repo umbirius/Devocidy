@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import { CenterFocusStrong } from "@material-ui/icons";
+import {useDispatch} from "react-redux"
+
+// import action to log in HERE 
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,11 +42,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MainForm = () => {
+
+// setting variable for form data and function to update MainForm object
   const [userData, setUserData] = useState({
     user: "",
     password: "",
   });
 
+// event handler to submt data, will include dispatch to trigger action 
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -50,7 +58,9 @@ const MainForm = () => {
     console.log(userData)
   };
 
+  // setting class to aforementioned styles
   const classes = useStyles();
+
   return (
     <Paper className={`${classes.root} ${classes.form}`}>
       <form onSubmit={handleSubmit}>
