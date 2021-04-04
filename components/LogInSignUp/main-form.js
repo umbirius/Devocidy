@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import { CenterFocusStrong } from "@material-ui/icons";
@@ -35,31 +35,48 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-
-  console.log(e);
-  console.log("Submit");
-};
-
 const MainForm = () => {
+  const [userData, setUserData] = useState({
+    user: "",
+    password: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(e);
+    console.log("Submit");
+    console.log(userData)
+  };
+
   const classes = useStyles();
   return (
     <Paper className={`${classes.root} ${classes.form}`}>
       <form onSubmit={handleSubmit}>
-        <TextField label="Username" variant="outlined"></TextField>
+        <TextField
+          name="user"
+          label="Username"
+          variant="outlined"
+          value={userData.user}
+          onChange={(e) => setUserData({ ...userData, user: e.target.value })}
+        ></TextField>
         <br></br>
         <TextField
           label="Password"
           type="password"
           autoComplete="current-password"
           variant="outlined"
+          value={userData.password}
+          onChange={(e) =>
+            setUserData({ ...userData, password: e.target.value })
+          }
         ></TextField>
         <Button
           className={classes.buttonSubmit}
           variant="contained"
           size="medium"
           color="primary"
+          type="submit"
         >
           Log In
         </Button>
