@@ -4,7 +4,9 @@ import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import { CenterFocusStrong } from "@material-ui/icons";
 import { useDispatch } from "react-redux";
 import { findUserByEmail } from "@/store/users/actions";
+import { useSession } from "next-auth/client";
 
+import { signIn, signOut } from "next-auth/client";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,9 +48,19 @@ const MainForm = () => {
     password: "",
   });
 
+  const [session, loading] = useSession();
+  console.log(session);
+
+
+  const sentence = () => {
+    if (session) {
+      return <p>Signed in as {session.user}</p>;
+    }
+  };
+
   // setting class to aforementioned styles
   const classes = useStyles();
-  
+
   // will need to use to dispatch a fucntion from the Redux store
   const dispatch = useDispatch();
 
@@ -56,10 +68,12 @@ const MainForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(findUserByEmail)
+    dispatch(findUserByEmail);
     console.log(e);
     console.log("Submit");
     console.log(userData);
+
+    console.log(session);
   };
 
   return (
@@ -99,10 +113,24 @@ const MainForm = () => {
           variant="contained"
           size="medium"
           color="primary"
+          onClick={() => signIn(null, { callbackUrl: '' })}
         >
           Sign Up
         </Button>
+        <Button
+          className={classes.button}
+          variant="contained"
+          size="medium"
+          color="primary"
+          onClick={(e) => {
+            e.preventDefault()
+            signOut();
+          }}
+        >
+          Sign Out
+        </Button>
       </form>
+      {/* {sentence()} */}
     </Paper>
   );
 };

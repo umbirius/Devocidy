@@ -12,7 +12,7 @@ const Contributors = () => {
         Contributors
       </Typography>
       {contributors.map((contributor) => (
-        <Box component='span' m={0} id={contributor._id}>
+        <Box component='span' key={contributor._id} m={0} id={contributor._id}>
           <Typography component='p'>{contributor.name}</Typography>
           <Link href={contributor.link}>see more...</Link>
         </Box>

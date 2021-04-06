@@ -24,5 +24,11 @@ export default NextAuth({
   ),
   pages: {
     // custom signin/signup/error pages
+    signIn: '/auth/signin',
   },
+  callbacks: {
+    async signIn(user, account, profile) {
+      console.log(user, account, profile)
+    },
+  }
 });
